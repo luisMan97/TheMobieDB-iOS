@@ -17,26 +17,28 @@ struct MoviesView: View {
     ]
         
     var body: some View {
-        NavigationView {
-            VStack {
-                viewModel.domain.map { domain in
-                    ScrollView {
-                        LazyVGrid(columns: columns, spacing: 20) {
-                            ForEach(domain, content: MovieItem.init)
+        LoadingView(isShowing: $viewModel.showProgress, text: viewModel.progressTitle) {
+            NavigationView {
+                VStack {
+                    viewModel.domain.map { domain in
+                        ScrollView {
+                            LazyVGrid(columns: columns, spacing: 20) {
+                                ForEach(domain, content: MovieItem.init)
+                            }
+                            .padding(.all, 50)
                         }
-                        .padding(.all, 50)
+                    }
+                }.navigationBarTitle("Peliculas")
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Image("tmdb")
+                            .resizable()
+                            .frame(width: 136.5, height: 18)
                     }
                 }
-            }.navigationBarTitle("Peliculas")
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Image("tmdb")
-                        .resizable()
-                        .frame(width: 136.5, height: 18)
+                .onAppear {
+                    viewModel.getMovies()
                 }
-            }
-            .onAppear {
-                viewModel.getMovies()
             }
         }
     }
