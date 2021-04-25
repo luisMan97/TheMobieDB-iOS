@@ -44,6 +44,10 @@
 		4E03283B2635F546003EB0E1 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E03283A2635F546003EB0E1 /* ActivityIndicator.swift */; };
 		4E0328422635FB3C003EB0E1 /* HandleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0328412635FB3B003EB0E1 /* HandleBar.swift */; };
 		4E0328492635FCD9003EB0E1 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0328482635FCD9003EB0E1 /* MovieDetail.swift */; };
+		4E03284E2635FE4E003EB0E1 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E03284D2635FE4E003EB0E1 /* StringExtensions.swift */; };
+		4E03285426360073003EB0E1 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E03285326360073003EB0E1 /* SearchBar.swift */; };
+		4E03285C26360089003EB0E1 /* ViewControllerResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E03285B26360089003EB0E1 /* ViewControllerResolver.swift */; };
+		4E032861263601B9003EB0E1 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E032860263601B9003EB0E1 /* ViewExtensions.swift */; };
 		4E8F56792633059700B55535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8F56782633059700B55535 /* AppDelegate.swift */; };
 		4E8F567B2633059700B55535 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8F567A2633059700B55535 /* SceneDelegate.swift */; };
 		4E8F567D2633059800B55535 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8F567C2633059800B55535 /* ContentView.swift */; };
@@ -102,6 +106,10 @@
 		4E03283A2635F546003EB0E1 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		4E0328412635FB3B003EB0E1 /* HandleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleBar.swift; sourceTree = "<group>"; };
 		4E0328482635FCD9003EB0E1 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
+		4E03284D2635FE4E003EB0E1 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		4E03285326360073003EB0E1 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		4E03285B26360089003EB0E1 /* ViewControllerResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerResolver.swift; sourceTree = "<group>"; };
+		4E032860263601B9003EB0E1 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		4E8F56752633059700B55535 /* TheMobibeDB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TheMobibeDB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E8F56782633059700B55535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E8F567A2633059700B55535 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -258,6 +266,15 @@
 				4E03283A2635F546003EB0E1 /* ActivityIndicator.swift */,
 			);
 			path = LoadingView;
+			sourceTree = "<group>";
+		};
+		4E03285226360069003EB0E1 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				4E03285326360073003EB0E1 /* SearchBar.swift */,
+				4E03285B26360089003EB0E1 /* ViewControllerResolver.swift */,
+			);
+			path = SearchBar;
 			sourceTree = "<group>";
 		};
 		4E8F566C2633059700B55535 = {
@@ -444,6 +461,7 @@
 		4E8F56C1263306AD00B55535 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4E03285226360069003EB0E1 /* SearchBar */,
 				4E0328312635F515003EB0E1 /* LoadingView */,
 				4E0328052635E59B003EB0E1 /* ImageView.swift */,
 				4E03280F2635EC25003EB0E1 /* AsyncImage.swift */,
@@ -459,6 +477,8 @@
 				4E0327EA2635DF58003EB0E1 /* ColorExtensions.swift */,
 				4E0327EF2635DFB6003EB0E1 /* UINavigationBarExtenions.swift */,
 				4E0327F42635DFCB003EB0E1 /* UINavigationBarAppearanceExtensions.swift */,
+				4E03284D2635FE4E003EB0E1 /* StringExtensions.swift */,
+				4E032860263601B9003EB0E1 /* ViewExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -660,6 +680,7 @@
 				4E03279A2635C8C5003EB0E1 /* APIManager.swift in Sources */,
 				4E0327F02635DFB6003EB0E1 /* UINavigationBarExtenions.swift in Sources */,
 				4E0328332635F52A003EB0E1 /* VisualEffectView.swift in Sources */,
+				4E03284E2635FE4E003EB0E1 /* StringExtensions.swift in Sources */,
 				4E03282A2635F4EC003EB0E1 /* LoadingView.swift in Sources */,
 				4E03280B2635EAF0003EB0E1 /* AsyncImageLoader.swift in Sources */,
 				4E8F56792633059700B55535 /* AppDelegate.swift in Sources */,
@@ -668,12 +689,14 @@
 				4E0327952635C83F003EB0E1 /* APIManagerConstants.swift in Sources */,
 				4E0327F52635DFCB003EB0E1 /* UINavigationBarAppearanceExtensions.swift in Sources */,
 				4E0327E62635DF33003EB0E1 /* UIColorExtensions.swift in Sources */,
+				4E03285426360073003EB0E1 /* SearchBar.swift in Sources */,
 				4E0327E12635D503003EB0E1 /* AppCoordinator.swift in Sources */,
 				4E0327A42635C97B003EB0E1 /* HTTPMethod.swift in Sources */,
 				4E0327B92635C9D3003EB0E1 /* MoviesBuilder.swift in Sources */,
 				4E03283B2635F546003EB0E1 /* ActivityIndicator.swift in Sources */,
 				4E8F567B2633059700B55535 /* SceneDelegate.swift in Sources */,
 				4E0327EB2635DF58003EB0E1 /* ColorExtensions.swift in Sources */,
+				4E032861263601B9003EB0E1 /* ViewExtensions.swift in Sources */,
 				4E0327D62635CD98003EB0E1 /* MovieResponseServer.swift in Sources */,
 				4E0327FE2635E575003EB0E1 /* ImageLoader.swift in Sources */,
 				4E0328192635EDD3003EB0E1 /* MovieItem.swift in Sources */,
@@ -683,6 +706,7 @@
 				4E0327BB2635C9D3003EB0E1 /* MoviesView.swift in Sources */,
 				4E0327B12635C9D3003EB0E1 /* GetMoviesUseCase.swift in Sources */,
 				4E0327B52635C9D3003EB0E1 /* MoviesModels.swift in Sources */,
+				4E03285C26360089003EB0E1 /* ViewControllerResolver.swift in Sources */,
 				4E0328102635EC25003EB0E1 /* AsyncImage.swift in Sources */,
 				4E0327BF2635C9D3003EB0E1 /* MoviesViewModel.swift in Sources */,
 				4E0328492635FCD9003EB0E1 /* MovieDetail.swift in Sources */,

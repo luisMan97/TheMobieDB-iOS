@@ -12,6 +12,7 @@ class MoviesViewModel: ObservableObject {
     // Internal Output Events Properties
     @Published var showProgress = false
     @Published var domain: [Movies.Movie.Domain]?
+    @Published var error: String?
     
     // Internal Properties
     var progressTitle = ""
@@ -37,7 +38,7 @@ class MoviesViewModel: ObservableObject {
         getMoviesUseCase.invoke(request: .init(page: 1))?
             .sink(receiveCompletion: { [weak self] (subscriptionCompletion: Subscribers.Completion<Error>) in
                 if case let .failure(error) = subscriptionCompletion {
-                    print(error.localizedDescription)
+                    self?.error = error.localizedDescription
                 }
                 
                 self?.showProgress = false

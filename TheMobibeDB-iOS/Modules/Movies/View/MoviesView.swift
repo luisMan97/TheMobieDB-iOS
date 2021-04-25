@@ -10,6 +10,7 @@ import SwiftUI
 struct MoviesView: View {
     
     @ObservedObject var viewModel: MoviesViewModel
+    @ObservedObject var searchBar: SearchBar = SearchBar()
     
     @State private var movie: Movies.Movie.Domain?
     
@@ -17,24 +18,53 @@ struct MoviesView: View {
         GridItem(.flexible(minimum: 90), spacing: 20),
         GridItem(.flexible(minimum: 90), spacing: 20),
     ]
+    
+    let rows = [
+            GridItem(.fixed(50))
+    ]
+    
+    private func filterList(_ movie: [Movies.Movie.Domain]) -> [Movies.Movie.Domain] {
+        movie.filter({ searchBar.text.isEmpty || $0.title.localizedStandardContains(searchBar.text) })
+    }
         
     var body: some View {
         LoadingView(isShowing: $viewModel.showProgress, text: viewModel.progressTitle) {
             NavigationView {
                 VStack {
-                    viewModel.domain.map { domain in
-                        ScrollView {
-                            LazyVGrid(columns: columns, spacing: 20) {
-                                ForEach(domain) { movie in
-                                    MovieItem(domain: movie, onTap: { movie in
-                                        self.movie = movie
-                                    })
+                    if viewModel.domain != nil {
+                        viewModel.domain.map { domain in
+                            VStack {
+                                /*ScrollView(.horizontal) {
+                                    LazyHGrid(rows: rows, spacing: 20) {
+                                        ForEach(domain) { item in
+                                            MovieItem(domain: item, onTap: { movie in
+                                                self.movie = item
+                                            })
+                                        }
+                                    }.padding(.horizontal, 20)
+                                }*/
+                                
+                                ScrollView {
+                                    LazyVGrid(columns: columns, spacing: 20) {
+                                        ForEach(filterList(domain)) { movie in
+                                            MovieItem(domain: movie, onTap: { movie in
+                                                self.movie = movie
+                                            })
+                                        }.add(searchBar)
+                                    }
+                                    .padding(.all, 50)
                                 }
                             }
-                            .padding(.all, 50)
                         }
+                    } else {
+                        Spacer()
+                        
+                        Text("No hay resultados para mostrar.")
+                        
+                        Spacer()
                     }
                 }.navigationBarTitle("Peliculas")
+                .sheet(item: $movie, content: MovieDetail.init)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
                         Image("tmdb")
@@ -45,7 +75,13 @@ struct MoviesView: View {
                 .onAppear {
                     viewModel.getMovies()
                 }
-                .sheet(item: $movie, content: MovieDetail.init)
+                .alert(item: $viewModel.error) {
+                    Alert(title: Text("Error"),
+                          message: Text($0),
+                          primaryButton: .default(Text("Ok")),
+                          secondaryButton: .default(Text("Reintentar"), action: viewModel.getMovies)
+                    )
+                }
             }
         }
     }
