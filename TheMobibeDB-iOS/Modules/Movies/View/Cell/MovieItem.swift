@@ -10,6 +10,7 @@ import SwiftUI
 struct MovieItem: View {
     
     var domain: Movies.Movie.Domain
+    var onTap: (_ item: Movies.Movie.Domain) -> Void
     
     var body: some View {
         VStack {
@@ -22,6 +23,9 @@ struct MovieItem: View {
                 .font(.caption)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.primary)
+        }
+        .onTapGesture {
+            onTap(domain)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()

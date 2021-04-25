@@ -11,7 +11,9 @@ struct MoviesView: View {
     
     @ObservedObject var viewModel: MoviesViewModel
     
-    let columns = [
+    @State private var movie: Movies.Movie.Domain?
+    
+    private let columns = [
         GridItem(.flexible(minimum: 90), spacing: 20),
         GridItem(.flexible(minimum: 90), spacing: 20),
     ]
@@ -23,7 +25,11 @@ struct MoviesView: View {
                     viewModel.domain.map { domain in
                         ScrollView {
                             LazyVGrid(columns: columns, spacing: 20) {
-                                ForEach(domain, content: MovieItem.init)
+                                ForEach(domain) { movie in
+                                    MovieItem(domain: movie, onTap: { movie in
+                                        self.movie = movie
+                                    })
+                                }
                             }
                             .padding(.all, 50)
                         }
@@ -39,6 +45,7 @@ struct MoviesView: View {
                 .onAppear {
                     viewModel.getMovies()
                 }
+                .sheet(item: $movie, content: MovieDetail.init)
             }
         }
     }

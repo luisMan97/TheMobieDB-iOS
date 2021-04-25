@@ -12,5 +12,13 @@ extension UIColor {
     static var primaryColor: UIColor {
         UIColor(named: "primaryColor") ?? .blue
     }
+    
+    static var handlebarBackgroundGrayColor: UIColor {
+        UIColor(named: "handlebarBackgroundGrayColor") ?? .lightGray
+    }
+    
+    static var handlebarGrayColor: UIColor {
+        UIColor(named: "handlebarGrayColor") ?? .gray
+    }
 
 }

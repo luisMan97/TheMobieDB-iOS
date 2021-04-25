@@ -12,5 +12,13 @@ extension Color {
     static var colorPrimary: Color {
         Color(.primaryColor)
     }
+    
+    static var handlebarBackgroundGrayColor: Color {
+        Color(.handlebarBackgroundGrayColor)
+    }
+    
+    static var handlebarGrayColor: Color {
+        Color(.handlebarGrayColor)
+    }
 
 }
