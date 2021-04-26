@@ -1,5 +1,5 @@
 //
-//  MovieDetail.swift
+//  FavoriteMovieDetail.swift
 //  TheMobibeDB-iOS
 //
 //  Created by Jorge Luis Rivera Ladino on 25/04/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MovieDetail: View {
+struct FavoriteMovieDetail: View {
     
     var domain: Movies.Movie.Domain
     var onTapSaveButton: ((Movies.Movie.Domain, URL?) -> Void)?
@@ -32,11 +32,14 @@ struct MovieDetail: View {
                             .foregroundColor(.primary)
                             .padding(.top)
                         
-                        AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(domain.posterPath)")!,
-                                       placeholder: { Text("Loading ...") },
-                                       image: { Image(uiImage: $0).resizable() })
-                            .frame(maxWidth: .infinity)
-                            .padding()
+                        UIImage(data: domain.image).map { uiImage in
+                            ZStack {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(maxWidth: .infinity)
+                            }
+                        }
                         
                         Text(domain.overview)
                             .font(.body)

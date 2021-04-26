@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Foundation
 
 class MoviesViewModel: ObservableObject {
     
@@ -13,6 +14,7 @@ class MoviesViewModel: ObservableObject {
     @Published var showProgress = false
     @Published var domain: [Movies.Movie.Domain]?
     @Published var error: String?
+    @Published var isSavedMovie = false
     
     // Internal Properties
     var progressTitle = ""
@@ -22,16 +24,28 @@ class MoviesViewModel: ObservableObject {
     
     // Interactor
     private var getMoviesUseCase: GetMoviesUseCase
+    private var saveSongUseCase: SaveSongUseCase
     
     // MARK: - Initializers
     
-    init(getMoviesUseCase: GetMoviesUseCase) {
+    init(getMoviesUseCase: GetMoviesUseCase,
+         saveSongUseCase: SaveSongUseCase
+    ) {
         self.getMoviesUseCase = getMoviesUseCase
+        self.saveSongUseCase = saveSongUseCase
     }
     
     // MARK: - Internal Methods
     
     func getMovies() {
+        guard ApiTool.isConnected else {
+            DispatchQueue.main.async {
+                self.error = "No tienes conexión a internet"
+            }
+           
+            return
+        }
+        
         progressTitle = "Cargando..."
         showProgress = true
         
@@ -46,6 +60,10 @@ class MoviesViewModel: ObservableObject {
                 self?.domain = value
             })
             .store(in: &subscriptions)
+    }
+    
+    func saveMovie(_ movie: Movies.Movie.Domain, url: URL?) {
+        isSavedMovie = saveSongUseCase.invoke(request: movie, url: url)
     }
 
 }

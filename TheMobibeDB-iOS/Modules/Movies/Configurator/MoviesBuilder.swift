@@ -6,21 +6,26 @@
 //
 
 import Foundation
+import CoreData
 
 class MoviesBuilder {
     
-    class func createModule() -> MoviesView {
+    class func createModule(managedContext: NSManagedObjectContext) -> MoviesView {
         let apiManager = APIManager()
         
-        let dataSource = MoviesURLSessionDataSource(apiManager: apiManager)
+        let dao = MoviesDao(managedContext: managedContext)
         
-        let repository: MoviesRepository = MoviesRepository(dataSource: dataSource)
+        let remoteDataSource = MoviesURLSessionDataSource(apiManager: apiManager)
+        let localDataSource = MoviesCoreDataDataSource(dao: dao, managedContext: managedContext)
+        
+        let repository: MoviesRepository = MoviesRepository(remoteDataSource: remoteDataSource, localDataSource: localDataSource)
         
         // Interactor
         let getMoviesUseCase = GetMoviesUseCase(repository: repository)
+        let saveSongUseCase = SaveSongUseCase(repository: repository)
         
         // ViewModel
-        let viewModel = MoviesViewModel(getMoviesUseCase: getMoviesUseCase)
+        let viewModel = MoviesViewModel(getMoviesUseCase: getMoviesUseCase, saveSongUseCase: saveSongUseCase)
         
         return MoviesView(viewModel: viewModel)
     }

@@ -15,9 +15,8 @@ struct ContentView: View {
     }
     
     var body: some View {
-        MoviesBuilder.createModule()
-        /*LyricsSearchBuilder.createModule(managedContext: managedContext)
-            .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)*/
+        MoviesBuilder.createModule(managedContext: managedContext)
+            .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
     }
 }
 

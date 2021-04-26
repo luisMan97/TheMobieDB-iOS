@@ -9,15 +9,21 @@ import Combine
 
 class MoviesRepository: ObservableObject {
     
-    private var dataSource: RemoteMoviesDataSource
+    private var remoteDataSource: RemoteMoviesDataSource
+    private var localDataSource: LocalMoviesDataSource
     
-    init(dataSource: RemoteMoviesDataSource) {
-        self.dataSource = dataSource
+    init(remoteDataSource: RemoteMoviesDataSource, localDataSource: LocalMoviesDataSource) {
+        self.remoteDataSource = remoteDataSource
+        self.localDataSource = localDataSource
     }
     
     func getMovies(request: Movies.Movie.Request) -> AnyPublisher<[Movies.Movie.Domain]?, Error>? {
-        dataSource.getMovies(request: request)
+        remoteDataSource.getMovies(request: request)
             .eraseToAnyPublisher()
+    }
+    
+    func saveMovies(request: Movies.Movie.Domain) -> Bool {
+        localDataSource.saveMovie(request: request)
     }
     
 }

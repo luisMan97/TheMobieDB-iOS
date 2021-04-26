@@ -1,5 +1,5 @@
 //
-//  MovieItem.swift
+//  MovieFavoriteItem.swift
 //  TheMobibeDB-iOS
 //
 //  Created by Jorge Luis Rivera Ladino on 25/04/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MovieItem: View {
+struct MovieFavoriteItem: View {
     
     var domain: Movies.Movie.Domain
     var onTap: (_ item: Movies.Movie.Domain) -> Void
@@ -15,18 +15,22 @@ struct MovieItem: View {
     var body: some View {
         VStack {
             ZStack(alignment: .bottomLeading) {
-                AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(domain.posterPath)")!,
-                                placeholder: { Text("Loading ...") },
-                                image: { Image(uiImage: $0).resizable() })
-                    .frame(maxWidth: UIScreen.main.bounds.width - 100)
+                UIImage(data: domain.image).map { uiImage in
+                    ZStack {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: UIScreen.main.bounds.width - 100)
+                    }
+                }
                     
-                    PencentageView(percentage: CGFloat(domain.voteAverage))
-                        .padding(.leading, 4)
-                        .padding(.bottom, -17.5)
+                PencentageView(percentage: CGFloat(domain.voteAverage))
+                    .padding(.leading, 4)
+                    .padding(.bottom, -17.5)
             }
                 
             Text(domain.title)
-                .font(.caption)
+                .font(.title)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.primary)
@@ -34,7 +38,7 @@ struct MovieItem: View {
                 .frame(height: 60)
             
             Text(domain.releaseDate)
-                .font(.caption)
+                .font(.title)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.primary)
         }.padding(.top)
@@ -49,3 +53,4 @@ struct MovieItem: View {
     }
     
 }
+

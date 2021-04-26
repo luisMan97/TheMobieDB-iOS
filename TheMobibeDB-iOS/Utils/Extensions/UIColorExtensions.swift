@@ -20,5 +20,17 @@ extension UIColor {
     static var handlebarGrayColor: UIColor {
         UIColor(named: "handlebarGrayColor") ?? .gray
     }
+    
+    static var percetageGreenColor: UIColor {
+        UIColor(named: "percetageGreenColor") ?? .green
+    }
+    
+    static var percentageBlueColor: UIColor {
+        UIColor(named: "percentageBlueColor") ?? .blue
+    }
+    
+    static var percetageGrayColor: UIColor {
+        UIColor(named: "percetageGrayColor") ?? .gray
+    }
 
 }

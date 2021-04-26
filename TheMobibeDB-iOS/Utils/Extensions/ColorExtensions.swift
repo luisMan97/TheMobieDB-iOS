@@ -20,5 +20,17 @@ extension Color {
     static var handlebarGrayColor: Color {
         Color(.handlebarGrayColor)
     }
+    
+    static var percetageGreenColor: Color {
+        Color(.percetageGreenColor)
+    }
+    
+    static var percentageBlueColor: Color {
+        Color(.percentageBlueColor)
+    }
+    
+    static var percentageGrayColor: Color {
+        Color(.percetageGrayColor)
+    }
 
 }
