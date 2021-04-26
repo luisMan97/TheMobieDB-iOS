@@ -15,8 +15,6 @@ The project does not use third party libraries. Don't cocoapods, don't cartage, 
 - La pantalla principal cuenta con una barra de búsqueda.
 - Se muestra mensaje de error cuando el servicio falla y un botón de reintentar para volver a hacer el llamado de nuevo.
 - La sección de favoritos está disponible sin acceso a Internet.
-
-#### Funcionalidades adicionales: 
 - Hay una modal de loading que se muestra cada vez que se hace la petición al servicio web.
 
 #### Funcionalidades técnicas:
@@ -35,6 +33,6 @@ Se implementó CLEAN como arquitectura, con las siguientes capas:
 1) View: Contiene las View de SwiftUI
 2) Presentation: Contiene los ViewModels
 3) Interactor/UseCases: Contiene los casos de uso (acciones de la aplicación y lógica de negocios)
-4) Entiity/Domain: Contiene las entidades
+4) Entity/Domain: Contiene las entidades
 5) Data: Contiene el patron repository para obtener los datos ya sea de una API o una base de datos local
 6) Framework: Contiene la implementación a más detalle de la obtención de datos usando ya la respectiva librería o framework (Alamofire, URLSession, CoreData y etc)
