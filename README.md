@@ -11,10 +11,11 @@ git clone https://github.com/luisMan97/TheMobieDB-iOS.git
 The project does not use third party libraries. Don't cocoapods, don't cartage, don't worry :)
 
 #### Funcionalidades
-- La pantalla principal consta de un listado de películas traidas de la API JSONPlaceholder.
+- La pantalla principal consta de un listado de películas traidas de la API TheMovieDB.
 - La pantalla principal cuenta con una barra de búsqueda.
+- Se muestra mensaje de error cuando el servicio falla y un botón de reintentar para volver a hacer el llamado de nuevo.
+- La sección de favoritos está disponible sin acceso a Internet.
 - Hay una modal de loading que se muestra cada vez que se hace la petición al servicio web.
-- La aplicación persiste el listado de usuarios, cuando se vuelva a entrar y si no se tiene internet, se trae estos datos.
 
 #### Funcionalidades técnicas:
 - La aplicación está desarrollada en Swift 5, con SwiftUI y Combine.
